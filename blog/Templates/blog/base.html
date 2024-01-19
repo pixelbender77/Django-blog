@@ -1,0 +1,173 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Blog</title>
+    <!-- Custom css link -->
+    <style type="text/css">
+    .navbar {
+        height:40px;  /*percentage height of the bar relative to the top value*/
+        width:100%;  /*The actual width of the side bar*/
+        position: fixed; 
+        z-index:1;  /*printing order*/
+        top:0;   /*distance from top*/
+        left:0;  /*distance from left*/
+        background-color:#1F0438;
+        overflow-x: :hidden;
+        padding-top:20px;
+        display: flex;
+        justify-content: center; /*aligning Horizontally*/
+        align-items: center; /*aligning veritcally*/
+        list-style: none;
+        
+    }
+    .navbar a{
+        padding: 6px 15px 6px 16px; /*6px away from top, 15px away from defined left margin, 6px vertical distance between subsequent objects of same class/tag(in this case "a") ,16px away from the defined left margin  */
+        text-decoration: none;
+        font-size: 25px;
+        color: #BDDDEC;
+        display:block;
+        margin: 0 10px;
+    }
+    .navbar a:hover{
+        color: #f1f1f1;
+    }
+    .navbar-right{
+        margin-left:120px;
+        padding: 65px 100px; 
+        list-style: none;
+        
+    }
+    .navbar-right a{
+        padding: 6px 0px 6px 16px; /*6px away from top, 15px away from defined left margin, 6px vertical distance between subsequent objects of same class/tag(in this case "a") ,16px away from the defined left margin  */
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display:block;
+        margin: 0 10px;
+    }
+    .navbar-right a:hover{
+        color: #140225;  
+    }
+    
+    .navbar-right li{
+        margin: 0 10px;
+    }
+    
+    .techfont {
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-size: 1.5em;
+        margin-bottom: 10px;
+    }
+    
+    .a {
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        color: lightskyblue;
+    }
+    .blog_posts{
+        margin-left:120px;
+        padding: 1px 100px; /* y and x values respectively. Yes Y before X !*/
+    }
+    
+    button {
+        display: inline-block;
+        background-color: #140225;
+        padding: 12px;
+        width: 100px;
+        color: #ffffff;
+        text-align: center;
+        border: 4px #cccccc;
+        border-radius: 5px;
+        font-size: 11px;
+        cursor: pointer;
+        margin: 5px;
+        -webkit-transition: all 0.5s;
+        -mos- transition: all 0.5s;
+        -o- transition: all 0.5s;
+        transition: all 0.5s;
+    }
+    
+    .navbar-bigbrand {
+        font-size: 1.5em;
+    }
+    
+    .centerstage {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .postdate {
+        text-align: center;
+    }
+    
+    .posttitle {
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-size: 3em;
+        text-align: center;
+    }
+    
+    .postconten {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1.5em;
+    }
+    
+    .btn-submit {
+        position: absolute;
+        right: 0px;
+    }
+    
+    .loader {
+        filter: hue-rotate(0deg);
+        color: linear-gradient(45deg, rgba(38, 32, 122, 0.452), #0f8);
+        animation: hue 1000ms infinite linear;
+    }
+    <!-- Google fonts-->
+    </style>
+
+</head>
+
+<body>
+    <!-- NAVBAR-->
+    <nav class="techfont custom-navbar">
+        <div class="container">
+            <ul class="navbar">
+                <li><a class="navbar-bigbrand" href="{% url 'post_list' %}">My Blog</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="/">Github</a></li>
+                <li><a href="/">LinkedIn</a></li>
+            </ul>
+
+            <ul class='navbar-right'>
+                {% if user.is_authenticated %}
+                    <li>
+                        <a href="{% url 'post_new' %}">New Post</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'post_draft_list' %}">Drafts</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'logout' %}">Logout</a>
+                    </li>
+                    <li>
+                        <a>Welcome {{user.username}}!</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a class="navbar-bar" href="{% url 'login' %}">Login</a>
+                    </li>
+                {% endif %}
+        
+        </div>
+    </nav>
+
+    <!-- CONTENT BLOCK-->
+    <div class="blog_posts">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+</body>
+
+</html>

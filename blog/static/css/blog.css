@@ -1,0 +1,76 @@
+.navbar-main {
+    font-size: 2em;
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #777;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.techfont {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.a {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: lightskyblue;
+}
+
+button {
+    display: inline-block;
+    background-color: #00772C;
+    padding: 12px;
+    width: 100px;
+    color: #ffffff;
+    text-align: center;
+    border: 4px #cccccc;
+    border-radius: 5px;
+    font-size: 11px;
+    cursor: pointer;
+    margin: 5px;
+    -webkit-transition: all 0.5s;
+    -mos- transition: all 0.5s;
+    -o- transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+.navbar-bigbrand {
+    font-size: 1.5em;
+}
+
+.centerstage {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.postdate {
+    text-align: center;
+}
+
+.posttitle {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 3em;
+    text-align: center;
+}
+
+.postconten {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5em;
+}
+
+.btn-submit {
+    position: absolute;
+    right: 0px;
+}
+
+.loader {
+    filter: hue-rotate(0deg);
+    color: linear-gradient(45deg, rgba(38, 32, 122, 0.452), #0f8);
+    animation: hue 1000ms infinite linear;
+}

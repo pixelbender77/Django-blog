@@ -1,0 +1,44 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <h1 class="posttitle loader">{{post.title}}</h1>
+    
+    {% if post.published_date %} <!-- If the post has a publication date.. -->
+        <div class="date postdate">
+            {{post.published_date}}
+        </div>
+    {% else %}
+        <a class='default-btn' href="{% url 'post_publish' pk=post.pk %}">Publish</a>
+    {% endif %}
+    <p class='postcontent'>{{ post.title|safe|linebreaksbr}}</p>
+    <p>{{post.text|safe|linebreaksbr}}</p>
+
+    <p>Likes: {{post.likes.count}}</p>
+    
+    {% if user.is_authenticated %}
+        <a class='primary-btn' href="{% url 'post_edit' pk=post.pk %}">Edit</a>
+        <a class='primary-btn' href="{% url 'post_remove' pk=post.pk %}">Delete</a>
+    {% endif %}
+    
+    <hr> <!-- Horizontal line :-)-->
+    <a class='like-button' href="{% url 'add_like_to_post' pk=post.pk%}">Like</a>
+    <a class='primary-btn' href="{% url 'add_comment_to_post' pk=post.pk %} ">Add Comment</a>
+
+    <div class="container">
+        {% for comment in post.comments.all %}
+            <br> <!-- a kind of gap-->
+            {% if user.is_authenticated or comment.approved_comment %}
+                {{comment.created_date}}
+                {% if not comment.approved_comment %}
+                    <a class='primary-btn' href="{% url 'comment_remove' pk=comment.pk %}">Remove</span></a>
+                    <a class='primary-btn' href="{% url 'comment_approve' pk=comment.pk %}">Approve</span></a>
+                {% endif %}
+                <p>{{comment.text|safe|linebreaksbr}}</p>
+                <p>Posted by:<strong>{{comment.author}}</strong></p>
+            {% endif %}
+        {% empty %}<!-- in case of empty for loop content -->
+            <p>No comments!</p>
+        {% endfor %}
+    </div>
+
+{% endblock %}
